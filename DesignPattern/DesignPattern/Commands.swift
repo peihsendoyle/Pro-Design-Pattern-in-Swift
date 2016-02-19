@@ -20,9 +20,15 @@ enum Command: String {
     
     case SEARCH = "S: Search"
     
-    static let ALL = [Command.LIST_PEOPLE, Command.ADD_PERSON, Command.DELETE_PERSON, Command.UPDATE_PERSON, Command.SEARCH]
+    case LIST_CITIES = "LC: List Cities"
     
-    func getFromInput(input: String) -> Command? {
+    case SEARCH_CITIES = "SC: Search Cities"
+    
+    case DELETE_CITY = "DC: Delete City"
+    
+    static let ALL = [Command.LIST_PEOPLE, Command.ADD_PERSON, Command.DELETE_PERSON, Command.UPDATE_PERSON, Command.SEARCH, Command.LIST_CITIES, Command.SEARCH_CITIES, Command.DELETE_CITY]
+    
+    static func getFromInput(input: String) -> Command? {
         
         switch (input.lowercaseString) {
             
@@ -45,6 +51,18 @@ enum Command: String {
         case "s":
             
             return Command.SEARCH
+            
+        case "lc":
+            
+            return Command.LIST_CITIES
+            
+        case "sc":
+            
+            return Command.SEARCH_CITIES
+            
+        case "dc":
+            
+            return Command.DELETE_CITY
             
         default:
             

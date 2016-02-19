@@ -24,7 +24,7 @@ extension Array {
         
         for value in self {
             
-            if !contains(uniqueValues, value as! T) {
+            if !(uniqueValues.contains(value as! T)) {
                 
                 uniqueValues.append(value as! T)
             }

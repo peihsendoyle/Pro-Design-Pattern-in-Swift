@@ -95,6 +95,60 @@ class PersonController: ControllerBase {
     }
 }
 
+class CityController: ControllerBase {
+    
+    override func handleCommand(command: Command, data: [String]) -> View? {
+        
+        switch command {
+            
+        case .LIST_CITIES:
+            
+            return listAll()
+            
+        case .SEARCH_CITIES:
+            
+            return search(data[0])
+            
+        case .DELETE_CITY:
+            
+            return delete(data[0])
+            
+        default:
+            
+            return super.handleCommand(command, data: data)
+        }
+    }
+    
+    private func listAll() -> View {
+        
+        return CityListView(data: repository.People.map({$0.city}).unique())
+    }
+    
+    private func search(city: String) -> View {
+        
+        let cityLower = city.lowercaseString
+        
+        let matches: [Person] = repository.People.filter({$0.city.lowercaseString == cityLower})
+        
+        return PersonListView(data: matches)
+    }
+    
+    private func delete(city: String) -> View {
+        
+        let cityLower = city.lowercaseString
+        
+        let toDelete = repository.People.filter({$0.city.lowercaseString == cityLower})
+        
+        for person in toDelete {
+            
+            repository.removePerson(person.name)
+            
+        }
+        
+        return PersonListView(data: repository.People)
+    }
+}
+
 
 
 

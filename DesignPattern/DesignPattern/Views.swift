@@ -26,7 +26,25 @@ class PersonListView: View {
         
         for person in people {
             
-            print(person)
+            print(person.description)
+        }
+    }
+}
+
+class CityListView: View {
+    
+    private let cities:[String]
+    
+    init(data: [String]) {
+        
+        self.cities = data
+    }
+    
+    func execute() {
+        
+        for city in self.cities {
+            
+            print("City: \(city)")
         }
     }
 }

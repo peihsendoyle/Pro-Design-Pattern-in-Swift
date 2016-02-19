@@ -10,7 +10,7 @@ import Foundation
 
 let repository = MemoryRepository()
 
-let controllerChain = PersonController(repo: repository, nextController: nil)
+let controllerChain = PersonController(repo: repository, nextController: CityController(repo: repository, nextController: nil))
 
 var stdIn = NSFileHandle.fileHandleWithStandardInput()
 
@@ -18,7 +18,7 @@ var command = Command.LIST_PEOPLE
 
 var data = [String]()
 
-while (true) {
+while true {
     
     if let view = controllerChain.handleCommand(command, data: data) {
         

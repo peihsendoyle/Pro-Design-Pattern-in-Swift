@@ -13,7 +13,7 @@ func == (lhs: Person, rhs: Person) -> Bool {
     return lhs.name == rhs.name && lhs.city == rhs.city
 }
 
-class Person: Equatable {
+class Person: Equatable, CustomStringConvertible {
     
     var name: String
     
